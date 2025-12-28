@@ -9,6 +9,9 @@ import SubmitFeedback from './pages/SubmitFeedback';
 import Insights from './pages/Insights';
 import Overview from './pages/Overview';
 
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
+
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return <div>Loading...</div>;
@@ -17,21 +20,25 @@ const PrivateRoute = ({ children }) => {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-      <Route path="/" element={
-        <PrivateRoute>
-          <Dashboard />
-        </PrivateRoute>
-      }>
-        <Route index element={<Overview />} />
-        <Route path="feedback" element={<FeedbackList />} />
-        <Route path="submit" element={<SubmitFeedback />} />
-        <Route path="insights" element={<Insights />} />
-      </Route>
-    </Routes>
+        <Route path="/dashboard" element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }>
+          <Route index element={<Overview />} />
+          <Route path="feedback" element={<FeedbackList />} />
+          <Route path="submit" element={<SubmitFeedback />} />
+          <Route path="insights" element={<Insights />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { BarChart, Users, MessageSquare, AlertCircle } from 'lucide-react';
 
 const Overview = () => {
     const [stats, setStats] = useState({ total: 0, bugs: 0, features: 0 });
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchStats = async () => {
@@ -63,8 +65,8 @@ const Overview = () => {
             <div className="card overview-chart">
                 <h2>Quick Actions</h2>
                 <div className="actions-row">
-                    <button onClick={() => window.location.href = '/submit'} className="secondary-btn">Submit New Feedback</button>
-                    <button onClick={() => window.location.href = '/insights'} className="secondary-btn">Generate Insights</button>
+                    <button onClick={() => navigate('/dashboard/submit')} className="secondary-btn">Submit New Feedback</button>
+                    <button onClick={() => navigate('/dashboard/insights')} className="secondary-btn">Generate Insights</button>
                 </div>
             </div>
         </div>

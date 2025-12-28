@@ -17,10 +17,10 @@ const Dashboard = () => {
             <aside className="sidebar">
                 <div className="logo">Clueso Clone</div>
                 <nav>
-                    <Link to="/" className="nav-item"><Home size={20} /> Overview</Link>
-                    <Link to="/feedback" className="nav-item"><MessageSquare size={20} /> Feedback</Link>
-                    <Link to="/submit" className="nav-item"><PlusCircle size={20} /> Submit</Link>
-                    <Link to="/insights" className="nav-item"><Sparkles size={20} /> AI Insights</Link>
+                    <Link to="/dashboard" className="nav-item"><Home size={20} /> Overview</Link>
+                    <Link to="/dashboard/feedback" className="nav-item"><MessageSquare size={20} /> Feedback</Link>
+                    <Link to="/dashboard/submit" className="nav-item"><PlusCircle size={20} /> Submit</Link>
+                    <Link to="/dashboard/insights" className="nav-item"><Sparkles size={20} /> AI Insights</Link>
                 </nav>
                 <div className="user-info">
                     <p>{user?.email}</p>

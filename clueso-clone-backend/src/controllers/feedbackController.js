@@ -25,3 +25,23 @@ exports.getFeedback = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+exports.deleteFeedback = async (req, res) => {
+    try {
+        const feedback = await Feedback.findById(req.params.id);
+
+        if (!feedback) {
+            return res.status(404).json({ message: 'Feedback not found' });
+        }
+
+        // Check user ownership
+        if (feedback.user.toString() !== req.user.id) {
+            return res.status(401).json({ message: 'Not authorized' });
+        }
+
+        await feedback.deleteOne();
+        res.json({ message: 'Feedback removed' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};

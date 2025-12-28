@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.error('MongoDB Connection Custom Error:', err)); // Added identifier
+  .catch(err => console.error('MongoDB Connection Error:', err));
 
 // Routes Placeholder
 app.get('/', (req, res) => {
@@ -34,7 +34,6 @@ app.use('/api/insights', insightRoutes);
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 

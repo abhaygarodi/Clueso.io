@@ -1,3 +1,8 @@
+/**
+ * Generate AI insights from feedback data
+ * @route POST /api/insights
+ * @access Public (or Protected in future)
+ */
 exports.generateInsights = async (req, res) => {
     try {
         const { feedbackList } = req.body; // Array of feedback objects or strings
@@ -6,7 +11,8 @@ exports.generateInsights = async (req, res) => {
             return res.status(400).json({ summary: 'No feedback provided to analyze.', themes: [] });
         }
 
-        // MOCK AI LOGIC
+        // MOCK AI LOGIC (Simulates an LLM response)
+        // In production, this would call OpenAI/Gemini API
         const keywords = ['slow', 'bug', 'crash', 'ui', 'great', 'love', 'feature'];
         const themes = [];
         let positiveCount = 0;
@@ -14,12 +20,14 @@ exports.generateInsights = async (req, res) => {
 
         const text = JSON.stringify(feedbackList).toLowerCase();
 
+        // Keyword extraction
         keywords.forEach(word => {
             if (text.includes(word)) {
                 themes.push(word);
             }
         });
 
+        // Basic sentiment analysis
         if (text.includes('great') || text.includes('love')) positiveCount++;
         if (text.includes('slow') || text.includes('crash')) negativeCount++;
 

@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { createFeedback, getFeedback } = require('../controllers/feedbackController');
+const { createFeedback, getFeedback, deleteFeedback } = require('../controllers/feedbackController');
 const auth = require('../middleware/auth');
 
 router.post('/', auth, createFeedback);
 router.get('/', auth, getFeedback);
+router.delete('/:id', auth, deleteFeedback);
 
 module.exports = router;
